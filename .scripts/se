@@ -1,5 +1,4 @@
 #!/bin/sh
 
 # Fuzzy find files and open them in $EDITOR
-
 du -a ~/.scripts/* ~/.config/* | awk '{print $2}' | fzf | xargs -r $EDITOR
