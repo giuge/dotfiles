@@ -1,0 +1,59 @@
+##
+# General keys
+###
+
+Print
+    scrot ~/Images/Screenshots/%d-%m-%Y_%H-%M-%S.png && notify-send "Screenshot taken"
+
+XF86AudioRaiseVolume
+    amixer set Master 4%+ && refbar
+
+XF86AudioLowerVolume
+    amixer set Master 4%- && refbar
+
+XF86AudioMute
+    amixer set Master toggle && refbar
+
+XF86MonBrightnessUp
+     xbacklight -inc 10 && notify-send "Brightness $(xbacklight | awk -F. '{print $1}')"
+
+XF86MonBrightnessDown
+     xbacklight -dec 10 && notify-send "Brightness $(xbacklight | awk -F. '{print $1}')"
+
+###
+# App shortcuts
+###
+
+# Terminal
+super + Return
+    st
+
+# Program launcher
+super + p
+  dmenu_run -nb '#262626' -sf '#eeeeee' -sb '#06989A' -nf '#bbbbbb'
+
+# Web browser
+super + w
+    chromium
+
+# Figma
+super + g
+    figma
+
+
+# File manager
+super + f
+    st -e vifm
+
+# Email
+super + m
+    st -e neomutt
+
+
+# Shutdown menu
+super + S
+    logoutmenu
+
+# Clipmenu
+super + C
+    clipmenu
