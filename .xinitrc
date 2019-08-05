@@ -9,7 +9,8 @@ setxkbmap -layout it
 dunst &      # Notification
 dwmbar &     # Status bar for dwm
 sxhkd &      # Keybinds
-clipmenud &    # Clipboard manager
+clipmenud &  # Clipboard manager
+unclutter &  # Hide mouse when idle
 
 # For Seahorse keyring
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
