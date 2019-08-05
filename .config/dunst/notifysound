@@ -1,0 +1,2 @@
+#!/bin/sh
+ffplay ~/.config/dunst/light.ogg -nodisp -autoexit

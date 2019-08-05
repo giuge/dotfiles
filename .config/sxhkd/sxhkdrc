@@ -2,8 +2,11 @@
 # General keys
 ###
 
-Print
-    scrot ~/Images/Screenshots/%d-%m-%Y_%H-%M-%S.png && notify-send "Screenshot taken"
+super + Print
+    scrot ~/Images/Screenshots/%d-%m-%Y_%H-%M-%S.png && notify-send "Scrot" "Screenshot taken" -i camera
+
+super + alt + Print
+    scrot -u ~/Images/Screenshots/%d-%m-%Y_%H-%M-%S.png && notify-send "Scrot" "Screenshot taken" -i camera
 
 XF86AudioRaiseVolume
     amixer set Master 4%+ && refbar
@@ -15,38 +18,29 @@ XF86AudioMute
     amixer set Master toggle && refbar
 
 XF86MonBrightnessUp
-     xbacklight -inc 10 && notify-send "Brightness $(xbacklight | awk -F. '{print $1}')"
+     xbacklight -inc 10 && dunstify "Brightness" "$(xbacklight)" -r 1 --replace=1 -i info
 
 XF86MonBrightnessDown
-     xbacklight -dec 10 && notify-send "Brightness $(xbacklight | awk -F. '{print $1}')"
+     xbacklight -dec 10 && dunstify "Brightness" "$(xbacklight)" -r 1 --replace=1 -i info
 
 ###
 # App shortcuts
 ###
 
-# Terminal
-super + Return
-    st
-
-# Program launcher
-super + p
-  dmenu_run -nb '#262626' -sf '#eeeeee' -sb '#06989A' -nf '#bbbbbb'
-
 # Web browser
 super + w
-    chromium
+    firefox
 
 # Figma
 super + g
     figma
 
-
 # File manager
 super + f
-    st -e vifm
+    st -e vifmrun
 
 # Email
-super + m
+super + e
     st -e neomutt
 
 
