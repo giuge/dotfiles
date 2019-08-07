@@ -53,7 +53,7 @@ set norunexec
 
 " Selected color scheme
 
-colorscheme molokai
+colorscheme base16
 
 " Format for displaying time in file list. For example:
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
@@ -194,6 +194,8 @@ fileviewer *.flac soxi
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
          \*.as[fx]
+        \ {View using MPlayer}
+        \ mpv -fs %f,
         \ {View using ffplay}
         \ ffplay -fs -autoexit %f,
         \ {View using Dragon}
@@ -201,9 +203,13 @@ filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
         \ {View using mplayer}
         \ mplayer %f,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-          \*.as[fx]
-         \ ffprobe -pretty %c 2>&1
+        \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+        \ vifmimg videopreview %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+      " \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+      " \*.as[fx]
+      " \ ffprobe -pretty %c 2>&1
 
 " Web
 filextype *.html,*.htm
@@ -230,7 +236,7 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
         \ vifmimg draw %px %py %pw %ph %c
         \ %pc
         \ vifmimg clear
@@ -354,7 +360,7 @@ filextype */
 "
 " Or leave it for automatic detection
 "
-fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
+fileviewer *[^/] pygmentize -O style=base16-default-dark -f console256 -g
 
 " Displaying pictures in terminal
 "
@@ -413,7 +419,7 @@ nnoremap gD :cd "~/Development"<cr>
 nnoremap gd :cd "~/Downloads"<cr>
 nnoremap gw :cd "~/Images/Wallpapers"<cr>
 nnoremap gc :cd "~/.config"<cr>
-noremap sw  :! feh --bg-scale %c && notify-send -i camera "Vifm" "Wallpaper changed"<cr>
+nnoremap bg :! feh --bg-fill %c && notify-send -i camera "Vifm" "Wallpaper changed"<cr>
 
 
 " Yank current directory path into the clipboard

@@ -25,6 +25,8 @@ call plug#begin('~/.config/nvim/plugged')
   " Aesthetics
   Plug 'ryanoasis/vim-devicons'
   Plug 'patstockwell/vim-monokai-tasty'
+  Plug 'chriskempson/base16-vim'
+  Plug 'vim-airline/vim-airline-themes'
 
   " Nerdtree
   Plug 'scrooloose/nerdtree'
@@ -58,11 +60,12 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 set background=dark
-let g:vim_monokai_tasty_termcolors=256 "this is what fixed it for me
-
-let g:vim_monokai_tasty_italic = 1
- colorscheme vim-monokai-tasty
-" let g:airline_theme='monokai_tasty'
+" let g:vim_monokai_tasty_termcolors=256 "this is what fixed it for me
+" let g:vim_monokai_tasty_italic = 1
+" colorscheme vim-monokai-tasty
+set termguicolors
+colorscheme base16-default-dark
+let g:airline_theme='base16_chalk'
 
 set go=a
 set mouse=a

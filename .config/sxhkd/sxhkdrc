@@ -9,13 +9,16 @@ super + alt + Print
     scrot -u ~/Images/Screenshots/%d-%m-%Y_%H-%M-%S.png && notify-send "Scrot" "Screenshot taken" -i camera
 
 XF86AudioRaiseVolume
-    amixer set Master 4%+ && refbar
+    pactl set-sink-volume @DEFAULT_SINK@ +5% && refbar
+    # amixer set Master 5%+ && refbar
 
 XF86AudioLowerVolume
-    amixer set Master 4%- && refbar
+    pactl set-sink-volume @DEFAULT_SINK@  -5% && refbar
+    # amixer set Master 5%- && refbar
 
 XF86AudioMute
-    amixer set Master toggle && refbar
+    pactl set-sink-mute @DEFAULT_SINK@ toggle && refbar
+    # amixer set Master toggle && refbar
 
 XF86MonBrightnessUp
      xbacklight -inc 10 && dunstify "Brightness" "$(xbacklight)" -r 1 --replace=1 -i info
@@ -23,13 +26,21 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
      xbacklight -dec 10 && dunstify "Brightness" "$(xbacklight)" -r 1 --replace=1 -i info
 
+super + n
+      notify-send "DUNST_COMMAND_PAUSE"
+
+
+super + N
+      notify-send "DUNST_COMMAND_RESUME"
+
 ###
 # App shortcuts
 ###
 
 # Web browser
 super + w
-    firefox
+    chromium
+# firefox
 
 # Figma
 super + g
