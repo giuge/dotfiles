@@ -67,6 +67,21 @@ set termguicolors
 colorscheme base16-default-dark
 let g:airline_theme='base16_chalk'
 
+" italics comments ;)
+set t_ZH=[3m
+set t_ZR=[23m
+highlight Comment cterm=italic
+
+" Make comments italic
+function! s:base16_customize() abort
+  call Base16hi("Comment", g:base16_gui03, "", g:base16_cterm03, "", "italic", "")
+endfunction
+
+augroup on_change_colorschema
+  autocmd!
+  autocmd ColorScheme * call s:base16_customize()
+augroup END
+
 set go=a
 set mouse=a
 set nohlsearch
