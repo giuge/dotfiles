@@ -25,7 +25,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="$PATH:/usr/local/bin:$HOME/.local/bin:$HOME/.scripts:$HOME/go/bin"
 export VISUAL="nvim"
 export EDITOR="nvim"
-export TERMINAL="st"
+export TERM="st-256color"
 export BROWSER="chromium"
 export SUDO_ASKPASS="x11-ssh-askpass"
 
