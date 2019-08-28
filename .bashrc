@@ -29,11 +29,6 @@ export TERM="st-256color"
 export BROWSER="chromium"
 export SUDO_ASKPASS="x11-ssh-askpass"
 
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
-export QT_SCALE_FACTOR=1.5
-export QT_STYLE_OVERRIDE=adwaita
-export QT_FONT_DPI=120
-
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     exec startx;
 fi

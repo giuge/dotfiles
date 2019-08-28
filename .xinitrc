@@ -2,7 +2,8 @@
 xrdb -merge ~/.Xresources
 
 # Italian Keyboard
-setxkbmap -layout it
+#setxkbmap -layout it
+setxkbmap it
 
 # Start stuff
 ~/.fehbg &   # Set bg to previous one
