@@ -39,8 +39,7 @@ super + N
 
 # Web browser
 super + w
-    chromium
-# firefox
+    firefox
 
 # Figma
 super + g
@@ -48,7 +47,7 @@ super + g
 
 # File manager
 super + f
-    thunar
+    urxvt -e vifmrun
 
 # Email
 super + M
