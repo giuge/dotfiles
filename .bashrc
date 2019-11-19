@@ -15,18 +15,18 @@ alias ll="ls -lhaG --color=auto"
 alias diff="diff --color=always"
 alias config='/usr/bin/git --git-dir=/home/giuge/.cfg --work-tree=/home/giuge'
 alias wifi-menu='wifi-menu -o'
-alias led='ledger -f ~/ledger/journal.ldg'
+alias led='ledger -f ~/.personal/ledger/journal.ledger'
 alias todo="todoist"
 
 #PS1='[\u@\h \W]\$ '
 export PS1="\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 6)\]\h \[$(tput setaf 7)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export PATH="$PATH:/usr/local/bin:$HOME/.local/bin:$HOME/.scripts:$HOME/go/bin"
+export PATH="$PATH:/usr/local/bin:$HOME/.local/bin:$HOME/.scripts:$HOME/go/bin:$HOME/.nimble/bin"
 export VISUAL="nvim"
 export EDITOR="nvim"
 export TERM="st-256color"
-export BROWSER="chromium"
+export BROWSER="firefox"
 export SUDO_ASKPASS="x11-ssh-askpass"
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then

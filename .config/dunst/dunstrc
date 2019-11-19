@@ -271,7 +271,7 @@
     history = ctrl+i
 
     # Context menu.
-    context = ctrl+shift+period
+    context = ctrl+a
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.

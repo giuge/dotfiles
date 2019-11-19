@@ -2,8 +2,10 @@
 xrdb -merge ~/.Xresources
 
 # Italian Keyboard
-#setxkbmap -layout it
 setxkbmap it
+
+# Swap Caps Lock with Ctrl
+setxkbmap -layout "$(setxkbmap -print | awk -F + '/xkb_symbols/ {print $2}')" -option ctrl:nocaps
 
 # Start stuff
 ~/.fehbg &   # Set bg to previous one
