@@ -26,6 +26,18 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
      xbacklight -dec 10 && dunstify "Brightness" "$(xbacklight)" -r 1 --replace=1 -i info
 
+XF86AudioStop
+     mpc stop
+
+XF86AudioPrev
+     mpc prev
+
+XF86AudioPlay
+     mpc toggle
+
+XF86AudioNext
+     mpc next
+
 super + n
       notify-send "Notifications disabled" && notify-send "DUNST_COMMAND_PAUSE"
 
@@ -41,10 +53,6 @@ super + N
 super + w
     firefox
 
-# Figma
-super + g
-    figma
-
 # File manager
 super + f
     urxvt -e vifmrun
@@ -58,7 +66,7 @@ super + e
     emacs
 
 # Shutdown menu
-super + S
+super + alt + s
     logoutmenu
 
 # Clipmenu

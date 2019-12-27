@@ -24,48 +24,37 @@ call plug#begin('~/.config/nvim/plugged')
 
   " Aesthetics
   Plug 'ryanoasis/vim-devicons'
-  Plug 'patstockwell/vim-monokai-tasty'
   Plug 'chriskempson/base16-vim'
   Plug 'vim-airline/vim-airline-themes'
+
+  " Syntax highlighting
+  Plug 'sheerun/vim-polyglot'
 
   " Nerdtree
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
 
-  " Haskell
-  Plug 'neovimhaskell/haskell-vim'
-
   " Javascript plugins
-  Plug 'pangloss/vim-javascript'
-  Plug 'MaxMEllon/vim-jsx-pretty'
-  Plug 'styled-components/vim-styled-components'
   Plug 'w0rp/ale'
-  Plug 'elzr/vim-json'
   Plug 'jparise/vim-graphql'
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
+
+  " Elixir
+  Plug 'mhinz/vim-mix-format'
 
   " Fuzzy finder
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
 
-  " Autocompletion
-  if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
+  " Intellisense
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
+
 set background=dark
-" let g:vim_monokai_tasty_termcolors=256 "this is what fixed it for me
-" let g:vim_monokai_tasty_italic = 1
-" colorscheme vim-monokai-tasty
 set termguicolors
-colorscheme base16-default-dark
+let base16colorspace=256
 let g:airline_theme='base16_chalk'
+colorscheme base16-default-dark
 
 " italics comments ;)
 set t_ZH=[3m
@@ -126,10 +115,12 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " Fuzzy finder
-map <leader>f :GFiles<CR>
+map <leader>f :Files<CR>
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>h :History<CR>
 
 " Distraction free writing
 map <leader>g :Goyo<CR>
@@ -161,7 +152,6 @@ let g:ale_lint_on_save = 1
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_linters_explicit = 1
 let g:ale_javascript_prettier_options = '--single-quote ---no-semi -trailing-comma es5'
-autocmd FileType js UltiSnipsAddFiletypes javascript-react
 
 nmap <silent> <Leader>< <Plug>(ale_previous_wrap)
 nmap <silent> <Leader>> <Plug>(ale_next_wrap)
@@ -169,9 +159,6 @@ nmap <silent> <Leader>? <Plug>(ale_detail)
 
 " Show linting errors in the status line
 let g:airline#extensions#ale#enabled = 1
-
-" Start autocompletion
-let g:deoplete#enable_at_startup = 1
 
 " Show images
 :autocmd BufEnter *.png,*.jpg,*gif exec "! sxiv ".expand("%") | :bw
@@ -190,9 +177,59 @@ set conceallevel=2
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
 
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,md call pencil#init()
-  autocmd FileType text call pencil#init()
-augroup END
+" augroup pencil
+"   autocmd!
+"   autocmd FileType markdown,md call pencil#init()
+" augroup END
 
+" Intellisense config
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for do codeAction of current line
+nmap <leader>ac <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+let g:airline#extensions#coc#enabled = 0
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Elixir
+let g:mix_format_on_save = 1

@@ -16,7 +16,7 @@ background = #181818
 background-alt = #86c1b9
 
 foreground = #b8b8b8
-foreground-alt = #282828
+foreground-alt = #585858
 
 primary = #86c1bl
 secondary = #e60053
@@ -27,8 +27,6 @@ alert = #bd2c40
 dpi = 170
 width = 100%
 height = 34
-;offset-x = 1%
-;offset-y = 1%
 fixed-center = true
 
 background = ${colors.background}
@@ -40,14 +38,14 @@ line-color = #f00
 padding-left = 0
 padding-right = 2
 
-module-margin-left = 2
-module-margin-right = 2
+module-margin-left = 1
+module-margin-right = 1
 
-font-0 = SauceCodePro Nerd Font:style=Regular:size=10;2
+font-0 = SauceCodePro Nerd Font:style=Regular:size=10;3
 
 modules-left = bspwm xwindow
-modules-center = mpd date
-modules-right = pulseaudio mail wlan
+modules-center = mpd
+modules-right = updates mail pulseaudio wlan date
 
 tray-position = right
 tray-padding = 2
@@ -92,7 +90,7 @@ label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 1
 
 ; Separator in between workspaces
-; label-separator = |
+;label-separator = |
 
 [module/wlan]
 type = internal/network
@@ -121,83 +119,101 @@ type = internal/date
 interval = 5
 
 date = " %d/%m/%Y"
-
 time = %H:%M
-time-alt = %H:%M:%S
 
-format-prefix =
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+;format-prefix = 
+#format-prefix-foreground = ${colors.foreground-alt}
 
 label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume =  %percentage%%
+use-ui-max = false
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
 
 label-volume-foreground = ${root.foreground}
 
 label-muted =  Muted
 label-muted-foreground = #666
 
-bar-volume-width = 10
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+interval = 2
 
-#a1b56c
-bar-volume-foreground-0 = #a1b56c
-bar-volume-foreground-1 = #a1b56c
-bar-volume-foreground-2 = #a1b56c
-bar-volume-foreground-3 = #a1b56c
-bar-volume-foreground-4 = #a1b56c
-bar-volume-foreground-5 = #dc9656
-bar-volume-foreground-6 = #ab4642
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+format-online = <label-song> <label-time>
+
+label-time = (%elapsed% / %total%)
+label-song =  %artist% - %title%
+
+toggle-on-foreground = #ff
+toggle-off-foreground = #55
+
+#bar-progress-width = 10
+#bar-progress-indicator = |
+#bar-progress-fill = ─
+#bar-progress-empty = ─
 
 [module/mail]
 type = custom/script
 exec = $XDG_CONFIG_HOME/polybar/count-mails.sh
-interval=180
+interval= 180
 label-padding = 1
 format-prefix = 
 click-left = urxvt -e neomutt &
 click-right = urxvt -e neomutt &
 
+[module/updates]
+type = custom/script
+exec = $XDG_CONFIG_HOME/polybar/updates.sh
+interval = 600
+label-padding = 1
+format-prefix = 
+click-left = st -e yay -Syu
+
 [module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 襤
-label-open-foreground = ${colors.secondary}
-label-close = ﰸ cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+type = custom/script
+exec = echo " "
+label-padding = 1
+format-prefix = 襤
+click-left = /usr/local/bin/logoutmenu
+click-right = /usr/local/bin/logoutmenu
+;type = custom/menu
+;
+;expand-right = true
+;
+;format-spacing = 1
+;
+;label-open = 襤
+;label-open-foreground = ${colors.secondary}
+;label-close = ﰸ cancel
+;label-close-foreground = ${colors.secondary}
+;label-separator = |
+;label-separator-foreground = ${colors.foreground-alt}
+;
+;menu-0-0 = reboot
+;menu-0-0-exec = menu-open-1
+;menu-0-1 = power off
+;menu-0-1-exec = menu-open-2
+;
+;menu-1-0 = cancel
+;menu-1-0-exec = menu-open-0
+;menu-1-1 = reboot
+;menu-1-1-exec = sudo reboot
+;
+;menu-2-0 = power off
+;menu-2-0-exec = sudo poweroff
+;menu-2-1 = cancel
+;menu-2-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true

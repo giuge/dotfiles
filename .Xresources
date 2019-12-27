@@ -6,6 +6,14 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
+! urxvt
+URxvt.perl-ext-common: clipboard
+URxvt.font: xft:mono:pixelsize=24:antialias:true:autohint:true, xft:Noto Emoji:pixelsize=24
+URxvt.scrollBar: false
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.letterSpace: true
 ! Base16 Default Dark
 ! Scheme: Chris Kempson (http://chriskempson.com)
 

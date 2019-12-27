@@ -241,11 +241,6 @@ fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.xpm
         \ %pc
         \ vifmimg clear
 
-fileviewer *.gif
-        \ vifmimg gifpreview %px %py %pw %ph %c
-        \ %pc
-        \ vifmimg clear
-
 " OpenRaster
 filextype *.ora
         \ {Edit in MyPaint}

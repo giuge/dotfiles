@@ -16,6 +16,7 @@ alias diff="diff --color=always"
 alias config='/usr/bin/git --git-dir=/home/giuge/.cfg --work-tree=/home/giuge'
 alias wifi-menu='wifi-menu -o'
 alias led='ledger -f ~/.personal/ledger/journal.ledger'
+alias dm="youtube-dl -i --extract-audio --audio-format mp3 --audio-quality 0"
 alias todo="todoist"
 
 #PS1='[\u@\h \W]\$ '
@@ -34,3 +35,5 @@ if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
