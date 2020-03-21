@@ -1,0 +1,9 @@
+configuration {
+  width: 25;
+  modi: "window,drun,ssh,combi,calc";
+  theme: "base16-custom.rasi";
+  font: "mono 18";
+  combi-modi: "drun";
+  show-icons: false;
+  combi-hide-mode-prefix: true;
+ }
